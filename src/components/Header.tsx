@@ -70,7 +70,7 @@ export default function Header() {
               </LightMode>
             </>
           ) : (
-            <Avatar size={"md"} />
+            <Avatar name={user?.name} src={user?.avatar} size={"md"} />
           )
         ) : null}
       </HStack>

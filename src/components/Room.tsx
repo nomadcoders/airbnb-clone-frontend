@@ -50,7 +50,7 @@ export default function Room({
           rounded="2xl"
         >
           {imageUrl ? (
-            <Image minH="280" src={imageUrl} />
+            <Image objectFit={"cover"} minH="280" src={imageUrl} />
           ) : (
             <Box minH="280px" h="100%" w="100%" p={10} bg="green.400" />
           )}

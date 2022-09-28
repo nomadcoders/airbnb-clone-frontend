@@ -148,7 +148,6 @@ export default function RoomDetail() {
         </Box>
         <Box pt={10}>
           <Calendar
-            goToRangeStartOnSelect
             onChange={setDates}
             prev2Label={null}
             next2Label={null}

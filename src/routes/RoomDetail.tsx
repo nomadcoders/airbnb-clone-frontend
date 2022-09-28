@@ -17,9 +17,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "../calendar.css";
 import { checkBooking, getRoom, getRoomReviews } from "../api";
 import { IReview, IRoomDetail } from "../types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 export default function RoomDetail() {
   const { roomPk } = useParams();
@@ -46,6 +48,9 @@ export default function RoomDetail() {
         lg: 40,
       }}
     >
+      <Helmet>
+        <title>{data ? data.name : "Loading..."}</title>
+      </Helmet>
       <Skeleton height={"43px"} width="25%" isLoaded={!isLoading}>
         <Heading>{data?.name}</Heading>
       </Skeleton>
@@ -143,6 +148,7 @@ export default function RoomDetail() {
         </Box>
         <Box pt={10}>
           <Calendar
+            goToRangeStartOnSelect
             onChange={setDates}
             prev2Label={null}
             next2Label={null}
@@ -153,7 +159,7 @@ export default function RoomDetail() {
           />
           <Button
             disabled={!checkBookingData?.ok}
-            isLoading={isCheckingBooking}
+            isLoading={isCheckingBooking && dates !== undefined}
             my={5}
             w="100%"
             colorScheme={"red"}
